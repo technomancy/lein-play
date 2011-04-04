@@ -1,5 +1,6 @@
 (ns leiningen.hooks.play
-  (:use [leiningen.core :only [add-hook]])
+  (:use [robert.hooke :only [add-hook]])
+  (:require [leiningen.test])
   (:import [java.io FileInputStream BufferedInputStream]
            [javazoom.jl.player Player]))
 
@@ -11,8 +12,9 @@
         (Player.)
         (.play))))
 
-(add-hook 'test (fn [f]
-                  (let [code (f)]
-                    (play (if (zero? code)
-                            "pass" "fail"))
-                    code)))
+(add-hook #'leiningen.test/test
+          (fn play-hook [f & args]
+            (let [code (apply f args)]
+              (play (if (zero? code)
+                      "pass" "fail"))
+              code)))
