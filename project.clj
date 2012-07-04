@@ -1,4 +1,4 @@
-(defproject lein-play "1.0.0-SNAPSHOT"
+(defproject lein-play "2.0.0-SNAPSHOT"
   :description "Play a sound when your tests pass or fail."
   :dependencies [[org.clojars.technomancy/jlayer "1.0"]]
-  :eval-in-leinigen test)
+  :eval-in-leiningen true)

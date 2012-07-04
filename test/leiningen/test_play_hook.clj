@@ -1,5 +1,6 @@
 (ns leiningen.test-play-hook
-  (:use [clojure.test]))
+  (:use [clojure.test]
+        [leiningen.hooks.play]))
 
 (deftest flip-flop
   (let [flop (java.io.File. "/tmp/test-lein-play")]
